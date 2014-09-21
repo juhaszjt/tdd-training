@@ -21,8 +21,8 @@ class Math
         return $a + $b;
     }
 
-    public function primeFactor()
+    public function primeFactor($num)
     {
-
+        return array();
     }
 }
