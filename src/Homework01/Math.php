@@ -6,6 +6,8 @@
  * Time: 22:52
  */
 
+namespace Tdd\Homework01;
+
 class Math
 {
 
