@@ -18,6 +18,6 @@ class MathTest extends \PHPUnit_Framework_TestCase
 
     public function testprimeFactor()
     {
-        $this->assertEquals(array(5, 3), Math::primeFactor(15));
+        $this->assertEquals(array(5, 3), Math::primeFactor(25));
     }
 }
