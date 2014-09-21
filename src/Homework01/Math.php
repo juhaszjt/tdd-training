@@ -21,6 +21,11 @@ class Math
         return $a + $b;
     }
 
+    /**
+     * @param int $num
+     *
+     * @return array
+     */
     public function primeFactor($num)
     {
         return array();
