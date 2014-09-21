@@ -39,6 +39,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
             array(array(2), 2),
             array(array(3, 2), 6),
             array(array(3, 3), 9),
+            array(array(5, 5, 2, 2), 100),
         );
     }
 }
