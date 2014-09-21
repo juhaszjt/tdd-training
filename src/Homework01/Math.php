@@ -10,6 +10,12 @@ namespace Tdd\Homework01;
 
 class Math
 {
+    /**
+     * @param int $a
+     * @param int $b
+     *
+     * @return int
+     */
     public function sum($a, $b)
     {
         return $a + $b;
