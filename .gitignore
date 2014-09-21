@@ -54,3 +54,4 @@ vendor/composer/autoload_psr4.php
 vendor/composer/autoload_real.php
 vendor/composer/ClassLoader.php
 .idea/php.xml
+test/report.php
