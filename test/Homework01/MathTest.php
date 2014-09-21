@@ -9,7 +9,7 @@
 namespace Tdd\test\Homework01;
 use Tdd\Homework01\Math;
 
-class MathTest extends PHPUnit_Framework_TestCase
+class MathTest extends \PHPUnit_Framework_TestCase
 {
     public function testSum()
     {
