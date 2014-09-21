@@ -19,9 +19,21 @@ class MathTest extends \PHPUnit_Framework_TestCase
     /**
      * @param array $result
      * @param int   $factorizeNumber
+     *
+     * @dataProvider factorizeDataProvider
      */
     public function testprimeFactor($result, $factorizeNumber)
     {
         $this->assertEquals($result, Math::primeFactor($factorizeNumber));
+    }
+
+    /**
+     * Provides data for factorize testprimeFactor test.
+     *
+     * @return array
+     */
+    public function factorizeDataProvider()
+    {
+        return array();
     }
 }
