@@ -20,4 +20,9 @@ class Math
     {
         return $a + $b;
     }
+
+    public function primeFactor()
+    {
+
+    }
 }
