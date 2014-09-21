@@ -28,6 +28,19 @@ class Math
      */
     public function primeFactor($num)
     {
-        return array();
+        $sqrt = sqrt($num);
+
+        for ($i = 2; $i <= $sqrt; $i++)
+        {
+            if ($num % $i == 0)
+            {
+                return array_merge(
+                    self::primeFactor($num / $i),
+                    array($i)
+                );
+            }
+        }
+
+        return array($num);
     }
 }
