@@ -16,8 +16,12 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, Math::sum(1, 1));
     }
 
-    public function testprimeFactor()
+    /**
+     * @param array $result
+     * @param int   $factorizeNumber
+     */
+    public function testprimeFactor($result, $factorizeNumber)
     {
-        $this->assertEquals(array(5, 3), Math::primeFactor(15));
+        $this->assertEquals($result, Math::primeFactor($factorizeNumber));
     }
 }
