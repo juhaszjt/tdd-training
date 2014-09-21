@@ -34,6 +34,8 @@ class MathTest extends \PHPUnit_Framework_TestCase
      */
     public function factorizeDataProvider()
     {
-        return array();
+        return array(
+            array(array(3, 5), 15),
+        );
     }
 }
