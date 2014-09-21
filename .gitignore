@@ -34,3 +34,23 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+.idea/.name
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/tdd-training.iml
+.idea/scopes/scope_settings.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/encodings.xml
+phpUnit/phpunit.phar
+myComposer/composer.json
+myComposer/composer.phar
+composer.json
+vendor/autoload.php
+vendor/composer/autoload_classmap.php
+vendor/composer/autoload_namespaces.php
+vendor/composer/autoload_psr4.php
+vendor/composer/autoload_real.php
+vendor/composer/ClassLoader.php
+.idea/php.xml
