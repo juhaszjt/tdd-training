@@ -15,4 +15,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(2, Math::sum(1, 1));
     }
+
+    public function testprimeFactor()
+    {
+        $this->assertEquals(array(5, 3), Math::primeFactor(15));
+    }
 }
