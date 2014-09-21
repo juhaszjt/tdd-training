@@ -10,5 +10,8 @@ namespace Tdd\Homework01;
 
 class Math
 {
-
+    public function sum($a, $b)
+    {
+        return $a + $b;
+    }
 }
