@@ -36,6 +36,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(array(5, 3), 15),
+            array(array(2), 2),
+            array(array(3, 2), 6),
+            array(array(3, 3), 9),
         );
     }
 }
