@@ -97,5 +97,32 @@ class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
             array(array(6, 9, 15, -2, 92, 11), 6),
         );
     }
+
+    /**
+     * @param array $elements
+     * @param int $average
+     *
+     * @dataProvider sequenceAverageDataProvider
+     */
+    public function testGetSequenceAverage(array $elements, $average)
+    {
+        $this->sequence = new Sequence($elements);
+
+        $this->sequenceAnalyser = new SequenceAnalyser($this->sequence);
+
+        $this->assertEquals($average, $this->sequenceAnalyser->getSequenceAverage());
+    }
+
+    /**
+     * sequenceAverageDataProvider
+     *
+     * @return array
+     */
+    public function sequenceAverageDataProvider()
+    {
+        return array(
+            array(array(6, 9, 15, -2, 92, 11), 21.833333),
+        );
+    }
 }
  
