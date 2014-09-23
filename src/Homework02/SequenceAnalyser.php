@@ -44,10 +44,15 @@ class SequenceAnalyser
 
         foreach ($elements as $element)
         {
-            if ($element > $this->max)
-            {
-                $this->max = $element;
-            }
+            $this->checkAndSetMaxValue($element);
+        }
+    }
+
+    private function checkAndSetMaxValue($element)
+    {
+        if ($element > $this->max)
+        {
+            $this->max = $element;
         }
     }
 }
