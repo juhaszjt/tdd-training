@@ -6,6 +6,8 @@
  * Time: 06:41
  */
 
+namespace Tdd\Homework02;
+
 class Sequence
 {
 

@@ -6,7 +6,9 @@
  * Time: 06:41
  */
 
-class SequenceTest extends PHPUnit_Framework_TestCase
+namespace Tdd\Test\Homework02;
+
+class SequenceTest extends \PHPUnit_Framework_TestCase
 {
 
 }
