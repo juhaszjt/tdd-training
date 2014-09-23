@@ -17,11 +17,31 @@ class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
 
     private $sequenceAnalyser = null;
 
-    public function testGetSequenceMax()
+    /**
+     * @param array $elements
+     * @param int $max
+     *
+     * @dataProvider sequenceMaxDataProvider
+     */
+    public function testGetSequenceMax(array $elements, $max)
     {
-        $this->sequence = new Sequence(array(6, 4));
+        $this->sequence = new Sequence($elements);
 
         $this->sequenceAnalyser = new SequenceAnalyser($this->sequence);
+
+        $this->assertEquals($max, $this->sequenceAnalyser->getSequenceMax());
+    }
+
+    /**
+     * sequenceMaxDataProvider
+     *
+     * @return array
+     */
+    public function sequenceMaxDataProvider()
+    {
+        return array(
+            array(array(6, 9, 15, -2, 92, 11), 92),
+        );
     }
 }
  
