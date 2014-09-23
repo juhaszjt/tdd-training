@@ -74,3 +74,6 @@ test/test/js/respond.min.js
 test/test/Math.php.html
 test/test/Sequence.php.html
 test/test/SequenceAnalyser.php.html
+src/Homework02/SequenceAnalyser.php
+test/Homework02/SequenceAnalyserTest.php
+test/Homework02/SequenceAnalyserTest.php
