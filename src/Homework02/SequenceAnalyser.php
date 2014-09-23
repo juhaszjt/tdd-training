@@ -44,8 +44,8 @@ class SequenceAnalyser
     {
         $elements = $this->sequence->getElements();
 
-        $this->max = 0;
-        $this->min = 0;
+        $this->max = $elements[0];
+        $this->min = $elements[0];
 
         foreach ($elements as $element)
         {
