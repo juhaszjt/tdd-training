@@ -16,4 +16,9 @@ class Sequence
     {
         $this->elements = $elements;
     }
+
+    public function getElements()
+    {
+        return $this->elements;
+    }
 }
