@@ -14,7 +14,11 @@ class SequenceAnalyser
 
     private $max = null;
 
+    private $min = null;
+
     const MAX = 'max';
+
+    const MIN = 'min';
 
     public function __construct(Sequence $sequence)
     {
@@ -41,10 +45,13 @@ class SequenceAnalyser
         $elements = $this->sequence->getElements();
 
         $this->max = 0;
+        $this->min = 0;
 
         foreach ($elements as $element)
         {
             $this->checkAndSetMaxValue($element);
+
+            $this->checkAndSetMinValue($element);
         }
     }
 
@@ -53,6 +60,21 @@ class SequenceAnalyser
         if ($element > $this->max)
         {
             $this->max = $element;
+        }
+    }
+
+    public function getSequenceMin()
+    {
+        $this->returnOrCalculate(self::MIN);
+
+        return $this->min;
+    }
+
+    private function checkAndSetMinValue($element)
+    {
+        if ($element < $this->min)
+        {
+            $this->min = $element;
         }
     }
 }
