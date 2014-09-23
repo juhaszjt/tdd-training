@@ -14,6 +14,8 @@ class SequenceAnalyser
 
     private $max = null;
 
+    const MAX = 'max';
+
     public function __construct(Sequence $sequence)
     {
         $this->sequence = $sequence;
@@ -21,6 +23,31 @@ class SequenceAnalyser
 
     public function getSequenceMax()
     {
+        $this->returnOrCalculate(self::MAX);
+
         return $this->max;
+    }
+
+    private function returnOrCalculate($value)
+    {
+        if (is_null($this->$value))
+        {
+            $this->runAnalyser();
+        }
+    }
+
+    private function runAnalyser()
+    {
+        $elements = $this->sequence->getElements();
+
+        $this->max = 0;
+
+        foreach ($elements as $element)
+        {
+            if ($element > $this->max)
+            {
+                $this->max = $element;
+            }
+        }
     }
 }
