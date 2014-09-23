@@ -10,5 +10,10 @@ namespace Tdd\Homework02;
 
 class SequenceAnalyser
 {
+    private $sequence = null;
 
+    public function __construct(Sequence $sequence)
+    {
+        $this->sequence = $sequence;
+    }
 }

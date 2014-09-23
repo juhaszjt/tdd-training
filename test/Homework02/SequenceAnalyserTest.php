@@ -13,6 +13,15 @@ use Tdd\Homework02\SequenceAnalyser;
 
 class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
 {
+    private $sequence = null;
 
+    private $sequenceAnalyser = null;
+
+    public function testGetSequenceMax()
+    {
+        $this->sequence = new Sequence(array(6, 4));
+
+        $this->sequenceAnalyser = new SequenceAnalyser($this->sequence);
+    }
 }
  
