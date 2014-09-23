@@ -19,7 +19,34 @@ class SequenceTest extends \PHPUnit_Framework_TestCase
         $elements = array(6, 4);
 
         $this->sequence = new Sequence($elements);
+
         $this->assertEquals($elements, $this->sequence->getElements());
+    }
+
+    /**
+     * @param array $elements
+     *
+     * @dataProvider   validateElementsDataProvider
+     */
+    public function testValidateElements(array $elements)
+    {
+        $this->sequence = new Sequence($elements);
+
+        $this->assertEquals(true, $this->sequence->validateElements());
+    }
+
+    /**
+     * validateElements DataProvider
+     *
+     * @return array
+     */
+    public function validateElementsDataProvider()
+    {
+        return array(
+            array(array(7, 4)),
+            array(array(9, 11)),
+            array(array(-1, 0)),
+        );
     }
 }
  
