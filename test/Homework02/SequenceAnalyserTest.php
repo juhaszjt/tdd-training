@@ -8,6 +8,8 @@
 
 namespace Tdd\Test\Homework02;
 
+use Tdd\Homework02\Sequence;
+use Tdd\Homework02\SequenceAnalyser;
 
 class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
 {

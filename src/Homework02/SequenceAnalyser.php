@@ -6,6 +6,8 @@
  * Time: 07:19
  */
 
+namespace Tdd\Homework02;
+
 class SequenceAnalyser
 {
 
