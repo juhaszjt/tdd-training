@@ -12,6 +12,11 @@ use Tdd\Homework02\Sequence;
 
 class SequenceTest extends \PHPUnit_Framework_TestCase
 {
+    private $sequence = null;
 
+    public function testSequenceInit()
+    {
+        $this->sequence = new Sequence(array(6, 4));
+    }
 }
  

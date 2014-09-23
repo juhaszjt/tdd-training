@@ -10,5 +10,10 @@ namespace Tdd\Homework02;
 
 class Sequence
 {
+    private $elements;
 
+    public function __construct(array $elements)
+    {
+        $this->elements = $elements;
+    }
 }
