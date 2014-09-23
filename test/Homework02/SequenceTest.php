@@ -16,7 +16,10 @@ class SequenceTest extends \PHPUnit_Framework_TestCase
 
     public function testSequenceInit()
     {
-        $this->sequence = new Sequence(array(6, 4));
+        $elements = array(6, 4);
+
+        $this->sequence = new Sequence($elements);
+        $this->assertEquals($elements, $this->sequence->getElements());
     }
 }
  
