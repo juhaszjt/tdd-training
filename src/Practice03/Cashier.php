@@ -6,7 +6,9 @@
  * Time: 18:13
  */
 
-//class Cashier
-//{
-//
-//}
+namespace Tdd\Practice03;
+
+class Cashier
+{
+
+}

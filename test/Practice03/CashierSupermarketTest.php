@@ -6,9 +6,9 @@
  * Time: 18:03
  */
 
-namespace TDD\Practice03;
+namespace Tdd\Test\Practice03;
 
-use TDD\Practice03\Cashier;
+use Tdd\Practice03\Cashier;
 
 class CashierSupermarketTest extends \PHPUnit_Framework_TestCase
 {
