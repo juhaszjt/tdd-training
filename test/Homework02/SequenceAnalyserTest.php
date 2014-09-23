@@ -43,5 +43,32 @@ class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
             array(array(6, 9, 15, -2, 92, 11), 92),
         );
     }
+
+    /**
+     * @param array $elements
+     * @param int $min
+     *
+     * @dataProvider sequenceMinDataProvider
+     */
+    public function testGetSequenceMin(array $elements, $min)
+    {
+        $this->sequence = new Sequence($elements);
+
+        $this->sequenceAnalyser = new SequenceAnalyser($this->sequence);
+
+        $this->assertEquals($min, $this->sequenceAnalyser->getSequenceMin());
+    }
+
+    /**
+     * sequenceMaxDataProvider
+     *
+     * @return array
+     */
+    public function sequenceMinDataProvider()
+    {
+        return array(
+            array(array(6, 9, 15, -2, 92, 11), -2),
+        );
+    }
 }
  
