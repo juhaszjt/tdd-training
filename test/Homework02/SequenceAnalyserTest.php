@@ -121,7 +121,7 @@ class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
     public function sequenceAverageDataProvider()
     {
         return array(
-            array(array(6, 9, 15, -2, 92, 11), 21.833333),
+            array(array(6, 9, 15, -2, 92, 11), round(21.833333, 4)),
         );
     }
 }

@@ -18,11 +18,15 @@ class SequenceAnalyser
 
     private $elementCount = null;
 
+    private $average = null;
+
     const MAX = 'max';
 
     const MIN = 'min';
 
     const ELEMENT_COUNT = 'elementCount';
+
+    const VALUE = 'average';
 
     public function __construct(Sequence $sequence)
     {
@@ -51,14 +55,20 @@ class SequenceAnalyser
         $this->max = $elements[0];
         $this->min = $elements[0];
 
+        $sum = 0;
+
         foreach ($elements as $element)
         {
             $this->checkAndSetMaxValue($element);
 
             $this->checkAndSetMinValue($element);
+
+            $sum += $element;
         }
 
         $this->elementCount = count($elements);
+
+        $this->average = round($sum / $this->elementCount, 4);
     }
 
     private function checkAndSetMaxValue($element)
@@ -89,5 +99,12 @@ class SequenceAnalyser
         $this->returnOrCalculate(self::ELEMENT_COUNT);
 
         return $this->elementCount;
+    }
+
+    public function getSequenceAverage()
+    {
+        $this->returnOrCalculate(self::VALUE);
+
+        return $this->average;
     }
 }
