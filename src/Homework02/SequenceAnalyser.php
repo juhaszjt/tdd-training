@@ -16,9 +16,13 @@ class SequenceAnalyser
 
     private $min = null;
 
+    private $elementCount = null;
+
     const MAX = 'max';
 
     const MIN = 'min';
+
+    const ELEMENT_COUNT = 'elementCount';
 
     public function __construct(Sequence $sequence)
     {
@@ -53,6 +57,8 @@ class SequenceAnalyser
 
             $this->checkAndSetMinValue($element);
         }
+
+        $this->elementCount = count($elements);
     }
 
     private function checkAndSetMaxValue($element)
@@ -76,5 +82,12 @@ class SequenceAnalyser
         {
             $this->min = $element;
         }
+    }
+
+    public function getSequenceElementCount()
+    {
+        $this->returnOrCalculate(self::ELEMENT_COUNT);
+
+        return $this->elementCount;
     }
 }
