@@ -48,5 +48,32 @@ class SequenceTest extends \PHPUnit_Framework_TestCase
             array(array(-1, 0)),
         );
     }
+
+    /**
+     * @param array $elements
+     *
+     * @dataProvider   validateElementsToFailDataProvider
+     */
+    public function testValidateElementsToFail(array $elements)
+    {
+        $this->sequence = new Sequence($elements);
+
+        $this->assertEquals(false, $this->sequence->validateElements());
+    }
+
+    /**
+     * validateElementsToFailDataProvider
+     *
+     * @return array
+     */
+    public function validateElementsToFailDataProvider()
+    {
+        return array(
+            array(array(null, 4)),
+            array(array(123, '1alma')),
+            array(array('sas', 'sas')),
+            array(array(7, 3.14)),
+        );
+    }
 }
  
