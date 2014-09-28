@@ -14,7 +14,7 @@ class ProductTest extends \PHPUnit_Framework_TestCase
 {
     public function testProductClass()
     {
-        $product = new Product();
+        $product = new Product('thing', 'unit', 55);
     }
 
     public function testProductClassStoredValuesEquals()
