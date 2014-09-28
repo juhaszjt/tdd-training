@@ -10,8 +10,14 @@ namespace Tdd\Homework03;
 
 class AppleProduct extends Product
 {
-    public function __construct($productName, $unit, $price)
+    const APPLE_PRODUCT_NAME = 'Apple';
+
+    const KILOGRAM = 'kg';
+
+    const PRICE = 32;
+
+    public function __construct()
     {
-        parent::__construct($productName, $unit, $price);
+        parent::__construct(self::APPLE_PRODUCT_NAME, self::KILOGRAM, self::PRICE);
     }
 }

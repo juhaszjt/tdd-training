@@ -10,8 +10,14 @@ namespace Tdd\Homework03;
 
 class StarShipProduct extends Product
 {
-    public function __construct($productName, $unit, $price)
+    const STAR_SHIP_PRODUCT_NAME = 'StarShip';
+
+    const PIECE = 'piece';
+
+    const PRICE = 999.99;
+
+    public function __construct()
     {
-        parent::__construct($productName, $unit, $price);
+        parent::__construct(self::STAR_SHIP_PRODUCT_NAME, self::PIECE, self::PRICE);
     }
 }

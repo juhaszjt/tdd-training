@@ -10,8 +10,14 @@ namespace Tdd\Homework03;
 
 class LightProduct extends Product
 {
-    public function __construct($productName, $unit, $price)
+    const LIGHT_PRODUCT_NAME = 'Light';
+
+    const YEAR = 'year';
+
+    const PRICE = 15;
+
+    public function __construct()
     {
-        parent::__construct($productName, $unit, $price);
+        parent::__construct(self::LIGHT_PRODUCT_NAME, self::YEAR, self::PRICE);
     }
 }

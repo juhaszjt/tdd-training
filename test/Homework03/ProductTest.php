@@ -61,9 +61,9 @@ class ProductTest extends \PHPUnit_Framework_TestCase
     public function extendedProductClassesStoredValuesEqualsDataProvider()
     {
         return array(
-            array(new AppleProduct('Apple', 'kg', 32), 'Apple', 'kg', 32),
-            array(new LightProduct('Light', 'year', 15), 'Light', 'year', 15),
-            array(new StarShipProduct('StarShip', 'piece', 999.99), 'StarShip', 'piece', 999.99),
+            array(new AppleProduct(), 'Apple', 'kg', 32),
+            array(new LightProduct(), 'Light', 'year', 15),
+            array(new StarShipProduct(), 'StarShip', 'piece', 999.99),
             array(new Product('Pear', 'count', 24), 'Pear', 'count', 24),
             array(new Product('Flag', 'count', 4), 'Flag', 'count', 4),
         );
