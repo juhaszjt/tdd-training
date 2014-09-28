@@ -39,5 +39,34 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $lightProduct = new LightProduct('Light', 'year', 15);
         $starShipProduct = new StarShipProduct('StarShip', 'piece', 999.99);
     }
+
+    /**
+     * @param Product $product
+     * @param string  $productName
+     * @param string  $unit
+     * @param float   $price
+     *
+     * @dataProvider extendedProductClassesStoredValuesEqualsDataProvider
+     */
+    public function testExtendedProductClassesStoredValuesEquals(Product $product, $productName, $unit, $price)
+    {
+        $this->assertEquals($productName, $product->getProductName());
+        $this->assertEquals($unit, $product->getUnit());
+        $this->assertEquals($price, $product->getPrice());
+    }
+
+    /**
+     * @return array
+     */
+    public function extendedProductClassesStoredValuesEqualsDataProvider()
+    {
+        return array(
+            array(new AppleProduct('Apple', 'kg', 32), 'Apple', 'kg', 32),
+            array(new LightProduct('Light', 'year', 15), 'Light', 'year', 15),
+            array(new StarShipProduct('StarShip', 'piece', 999.99), 'StarShip', 'piece', 999.99),
+            array(new Product('Pear', 'count', 24), 'Pear', 'count', 24),
+            array(new Product('Flag', 'count', 4), 'Flag', 'count', 4),
+        );
+    }
 }
  
