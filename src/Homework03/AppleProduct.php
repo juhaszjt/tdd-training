@@ -10,5 +10,8 @@ namespace Tdd\Homework03;
 
 class AppleProduct extends Product
 {
-
+    public function __construct($productName, $unit, $price)
+    {
+        parent::__construct($productName, $unit, $price);
+    }
 }
