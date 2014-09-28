@@ -29,5 +29,12 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($unit, $product->getUnit());
         $this->assertEquals($price, $product->getPrice());
     }
+
+    public function testExtendedProductClasses()
+    {
+        $appleProduct = new AppleProduct('Apple', 'kg', 32);
+        $lightProduct = new LightProduct('Light', 'year', 15);
+        $starShipProduct = new StarShipProduct('StarShip', 'piece', 999.99);
+    }
 }
  
