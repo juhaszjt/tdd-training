@@ -10,5 +10,8 @@ namespace Tdd\Homework03;
 
 class Product
 {
+    public function __construct()
+    {
 
+    }
 }

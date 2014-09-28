@@ -16,5 +16,18 @@ class ProductTest extends \PHPUnit_Framework_TestCase
     {
         $product = new Product();
     }
+
+    public function testProductClassStoredValuesEquals()
+    {
+        $productName = 'Apple';
+        $unit = 'kg';
+        $price = 32;
+
+        $product = new Product($productName, $unit, $price);
+
+        $this->assertEquals($productName, $product->getProductName());
+        $this->assertEquals($unit, $product->getUnit());
+        $this->assertEquals($price, $product->getPrice());
+    }
 }
  

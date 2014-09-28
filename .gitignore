@@ -85,3 +85,4 @@ src/Practice03B/LightProduct.php
 src/Practice03B/Product.php
 src/Practice03B/StarShipProduct.php
 test/Practice03/ProductTest.php
+test/test/Product.php.html
