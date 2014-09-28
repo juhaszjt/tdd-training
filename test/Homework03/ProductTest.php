@@ -8,6 +8,8 @@
 
 namespace Tdd\Test\Homework03;
 
+use Tdd\Homework03\Product;
+
 class ProductTest extends \PHPUnit_Framework_TestCase
 {
     public function testProductClass()
