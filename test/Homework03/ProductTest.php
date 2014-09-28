@@ -9,6 +9,9 @@
 namespace Tdd\Test\Homework03;
 
 use Tdd\Homework03\Product;
+use Tdd\Homework03\AppleProduct;
+use Tdd\Homework03\LightProduct;
+use Tdd\Homework03\StarShipProduct;
 
 class ProductTest extends \PHPUnit_Framework_TestCase
 {
