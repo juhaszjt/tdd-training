@@ -6,6 +6,8 @@
  * Time: 23:39
  */
 
+namespace Tdd\Homework03;
+
 class LightProduct extends Product
 {
     

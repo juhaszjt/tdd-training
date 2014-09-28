@@ -6,6 +6,8 @@
  * Time: 23:38
  */
 
+namespace Tdd\Homework03;
+
 class AppleProduct extends Product
 {
 
