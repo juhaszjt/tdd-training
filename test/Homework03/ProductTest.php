@@ -10,6 +10,9 @@ namespace Tdd\Test\Homework03;
 
 class ProductTest extends \PHPUnit_Framework_TestCase
 {
-
+    public function testProductClass()
+    {
+        $product = new Product();
+    }
 }
  
