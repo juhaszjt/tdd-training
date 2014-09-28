@@ -77,3 +77,11 @@ test/test/SequenceAnalyser.php.html
 src/Homework02/SequenceAnalyser.php
 test/Homework02/SequenceAnalyserTest.php
 test/Homework02/SequenceAnalyserTest.php
+src/Practice03B/AppleProduct.php
+src/Practice03B/Basket.php
+src/Practice03B/Cashier.php
+src/Practice03B/index.php
+src/Practice03B/LightProduct.php
+src/Practice03B/Product.php
+src/Practice03B/StarShipProduct.php
+test/Practice03/ProductTest.php
