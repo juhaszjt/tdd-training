@@ -95,9 +95,6 @@ class SequenceAnalyserTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(array(6, 9, 15, -2, 92, 11), 6),
-            array(array(6, 9, 15, -2, 92, 11), 6),
-            array(array(6, 9, 15, -2, 92, 11), 6),
-            array(array(6, 9, 15, -2, 92, 11), 6),
         );
     }
 
