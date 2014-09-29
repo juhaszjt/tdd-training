@@ -10,7 +10,7 @@ namespace Tdd\Homework03;
 
 class Basket
 {
-    private $basket;
+    private $basket = array();
 
     /**
      * @return array
