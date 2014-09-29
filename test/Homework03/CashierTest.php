@@ -110,30 +110,4 @@ class CashierTest extends \PHPUnit_Framework_TestCase
 
         $cashier->calculate();
     }
-
-    /**
-     * @dataProvider cashierCalculateMethodWithParamsDataProvider
-     */
-    public function testCashierCalculateMethodWithParams(array $item, $result)
-    {
-        $this->cashier = new Cashier();
-
-        $this->cashier->buyProduct($item[0], $item[1]);
-
-        $this->assertEquals($result, $this->cashier->calculate());
-    }
-
-    /**
-     * cashierCalculateMethodWithParamsDataProvider
-     *
-     * @return array
-     */
-    public function cashierCalculateMethodWithParamsDataProvider()
-    {
-        return array(
-            array(array(AppleProduct::APPLE_PRODUCT_NAME, 1), 32),
-            array(array(LightProduct::LIGHT_PRODUCT_NAME, 1), 15),
-            array(array(StarShipProduct::STAR_SHIP_PRODUCT_NAME, 1), 99999),
-        );
-    }
 }

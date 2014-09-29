@@ -15,12 +15,6 @@ class Cashier
     private $starShipProduct;
     private $basket;
 
-    private $sum = 0;
-
-    const QUANTITY = 'quantity';
-
-    const PRICE = 'price';
-
     public function __construct()
     {
        $this->appleProduct = new AppleProduct();
@@ -128,11 +122,6 @@ class Cashier
 
     public function calculate()
     {
-        foreach($this->basket->getBasket() as $oneBasketItem)
-        {
-            $this->sum += $oneBasketItem[self::QUANTITY] * $oneBasketItem[self::PRICE];
-        }
 
-        return $this->sum;
     }
 }
