@@ -65,6 +65,36 @@ class Cashier
     {
         $this->validInputParams($name, $quantity);
 
+        switch($name)
+        {
+            case $this->appleProduct->getProductName():
+                $this->basket->addToBasket(
+                    $this->appleProduct->getProductName(),
+                    $this->appleProduct->getPrice(),
+                    $this->appleProduct->getUnit(),
+                    $quantity
+                );
+                break;
+
+            case $this->lightProduct->getProductName():
+                $this->basket->addToBasket(
+                    $this->lightProduct->getProductName(),
+                    $this->lightProduct->getPrice(),
+                    $this->lightProduct->getUnit(),
+                    $quantity
+                );
+                break;
+
+            case $this->starShipProduct->getProductName():
+                $this->basket->addToBasket(
+                    $this->starShipProduct->getProductName(),
+                    $this->starShipProduct->getPrice(),
+                    $this->starShipProduct->getUnit(),
+                    $quantity
+                );
+                break;
+        }
+
         return true;
     }
 
