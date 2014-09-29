@@ -12,6 +12,11 @@ class Basket
 {
     private $basket = array();
 
+    const NAME = 'name';
+    const PRICE = 'price';
+    const UNIT = 'unit';
+    const QUANTITY = 'quantity';
+
     /**
      * @return array
      */
@@ -20,8 +25,19 @@ class Basket
         return $this->basket;
     }
 
-    public function addToBasket()
+    /**
+     * @param string $name
+     * @param string $unit
+     * @param float  $price
+     * @param int    $quantity
+     */
+    public function addToBasket($name, $unit, $price, $quantity)
     {
-
+        $this->basket[] = array(
+            self::NAME => $name,
+            self::UNIT => $unit,
+            self::PRICE => $price,
+            self::QUANTITY => $quantity,
+        );
     }
 }

@@ -37,13 +37,14 @@ class BasketTest extends \PHPUnit_Framework_TestCase
         $basket = new Basket();
 
         $basket->addToBasket(AppleProduct::APPLE_PRODUCT_NAME, AppleProduct::KILOGRAM, AppleProduct::PRICE, 65);
+
         $this->assertEquals(
             array(
                 0 => array(
-                    'name' => AppleProduct::APPLE_PRODUCT_NAME,
-                    'price' => AppleProduct::KILOGRAM,
-                    'unit' => AppleProduct::PRICE,
-                    'quantity'=> 65
+                    Basket::NAME => AppleProduct::APPLE_PRODUCT_NAME,
+                    Basket::UNIT => AppleProduct::KILOGRAM,
+                    Basket::PRICE => AppleProduct::PRICE,
+                    Basket::QUANTITY => 65
                 )
             ),
             $basket->getBasket()
