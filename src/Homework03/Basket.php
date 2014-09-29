@@ -20,5 +20,8 @@ class Basket
         return $this->basket;
     }
 
+    public function addToBasket()
+    {
 
+    }
 }
