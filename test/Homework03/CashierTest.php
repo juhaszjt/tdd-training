@@ -8,6 +8,7 @@
 
 namespace Tdd\Test\Homework03;
 
+use Tdd\Homework03\Cashier;
 
 class CashierTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,5 +17,10 @@ class CashierTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->cashier = new Cashier();
+    }
+
+    public function testCashierClassExists()
+    {
+        $cashier = $this->cashier;
     }
 }
