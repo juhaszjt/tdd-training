@@ -9,6 +9,8 @@
 namespace Tdd\Test\Homework03;
 
 use Tdd\Homework03\Basket;
+use Tdd\Homework03\AppleProduct;
+use Tdd\Homework03\Product;
 
 class BasketTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,7 +36,18 @@ class BasketTest extends \PHPUnit_Framework_TestCase
     {
         $basket = new Basket();
 
-        $basket->addToBasket();
+        $basket->addToBasket(AppleProduct::APPLE_PRODUCT_NAME, AppleProduct::KILOGRAM, AppleProduct::PRICE, 65);
+        $this->assertEquals(
+            array(
+                0 => array(
+                    'name' => AppleProduct::APPLE_PRODUCT_NAME,
+                    'price' => AppleProduct::KILOGRAM,
+                    'unit' => AppleProduct::PRICE,
+                    'quantity'=> 65
+                )
+            ),
+            $basket->getBasket()
+        );
     }
 }
  
