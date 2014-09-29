@@ -55,5 +55,8 @@ class Cashier
         return $this->starShipProduct;
     }
 
+    public function buyProduct()
+    {
 
+    }
 }
