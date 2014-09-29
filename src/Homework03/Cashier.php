@@ -13,12 +13,22 @@ class Cashier
     private $appleProduct;
     private $lightProduct;
     private $starShipProduct;
+    private $basket;
 
     public function __construct()
     {
        $this->appleProduct = new AppleProduct();
        $this->lightProduct = new LightProduct();
        $this->starShipProduct = new StarShipProduct();
+       $this->basket = new Basket();
+    }
+
+    /**
+     * @return Basket
+     */
+    public function getBasket()
+    {
+        return $this->basket;
     }
 
     /**
