@@ -16,5 +16,12 @@ class BasketTest extends \PHPUnit_Framework_TestCase
     {
         $basket = new Basket();
     }
+
+    public function testBasketVariableExists()
+    {
+        $basket = new Basket();
+
+        $basket->getBasket();
+    }
 }
  
