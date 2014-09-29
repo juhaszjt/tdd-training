@@ -70,4 +70,37 @@ class CashierTest extends \PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    /**
+     * @param array $item
+     *
+     * @dataProvider cashierBuyProductMethodWithInvalidParamsDataProvider
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCashierBuyProductMethodWithInvalidParams(array $item)
+    {
+        $cashier = $this->cashier;
+
+        $this->assertEquals(false, $cashier->buyProduct($item[0], $item[1]));
+    }
+
+    /**
+     * cashierBuyProductMethodWithInvalidParamsDataProvider
+     *
+     * @return array
+     */
+    public function cashierBuyProductMethodWithInvalidParamsDataProvider()
+    {
+        return array(
+            array(
+                array(AppleProduct::APPLE_PRODUCT_NAME, -8),
+                array('Sausage', 29),
+                array(StarShipProduct::STAR_SHIP_PRODUCT_NAME, 0),
+                array('Grapes', 1.11),
+                array(new \stdClass, 44),
+                array('', 6),
+                array(StarShipProduct::STAR_SHIP_PRODUCT_NAME, ''),
+            ),
+        );
+    }
 }
