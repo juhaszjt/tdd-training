@@ -57,5 +57,14 @@ class BasketTest extends \PHPUnit_Framework_TestCase
             $basket->getBasket()
         );
     }
+
+    public function testAddToBasketWithInvalidParams()
+    {
+        $basket = $this->basket;
+
+        $basket->addToBasket('', '', -66, 0);
+
+        $this->assertEquals(array(), $basket->getBasket());
+    }
 }
  
