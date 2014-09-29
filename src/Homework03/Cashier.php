@@ -17,10 +17,10 @@ class Cashier
 
     public function __construct()
     {
-       $this->appleProduct = new AppleProduct();
-       $this->lightProduct = new LightProduct();
-       $this->starShipProduct = new StarShipProduct();
-       $this->basket = new Basket();
+        $this->appleProduct = new AppleProduct();
+        $this->lightProduct = new LightProduct();
+        $this->starShipProduct = new StarShipProduct();
+        $this->basket = new Basket();
     }
 
     /**
@@ -122,6 +122,11 @@ class Cashier
 
     public function calculate()
     {
+        foreach($this->basket->getBasket() as $oneBasketItem)
+        {
+            $this->sum += $oneBasketItem[self::QUANTITY] * $oneBasketItem[self::PRICE];
+        }
 
+        return $this->sum;
     }
 }
