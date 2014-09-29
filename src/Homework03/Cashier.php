@@ -119,4 +119,9 @@ class Cashier
             throw new \InvalidArgumentException('Invalid quantity param!');
         }
     }
+
+    public function calculate()
+    {
+
+    }
 }
