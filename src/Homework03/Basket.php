@@ -10,5 +10,15 @@ namespace Tdd\Homework03;
 
 class Basket
 {
+    private $basket;
+
+    /**
+     * @return array
+     */
+    public function getBasket()
+    {
+        return $this->basket;
+    }
+
 
 }
