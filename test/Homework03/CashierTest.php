@@ -43,10 +43,31 @@ class CashierTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Basket(), $basket);
     }
 
-    public function testCashierBuyProductMethod()
+    /**
+     * @param array $item
+     *
+     * @dataProvider cashierBuyProductMethodDataProvider
+     */
+    public function testCashierBuyProductMethod(array $item)
     {
         $cashier = $this->cashier;
 
-        $cashier->buyProduct();
+        $this->assertEquals(true, $cashier->buyProduct($item[0], $item[1]));
+    }
+
+    /**
+     * cashierBuyProductMethodDataProvider
+     *
+     * @return array
+     */
+    public function cashierBuyProductMethodDataProvider()
+    {
+        return array(
+            array(
+                array(AppleProduct::APPLE_PRODUCT_NAME, 8),
+                array(LightProduct::LIGHT_PRODUCT_NAME, 29),
+                array(StarShipProduct::STAR_SHIP_PRODUCT_NAME, 87),
+            ),
+        );
     }
 }
