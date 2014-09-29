@@ -14,27 +14,34 @@ use Tdd\Homework03\Product;
 
 class BasketTest extends \PHPUnit_Framework_TestCase
 {
+    private $basket;
+
+    public function setUp()
+    {
+        $this->basket = new Basket();
+    }
+
     public function testBasketExists()
     {
-        $basket = new Basket();
+        $basket = $this->basket;
     }
 
     public function testBasketVariableExists()
     {
-        $basket = new Basket();
+        $basket = $this->basket;
 
         $basket->getBasket();
     }
 
     public function testBasketVariableEquals()
     {
-        $basket = new Basket();
+        $basket = $this->basket;
         $this->assertEquals(array(), $basket->getBasket());
     }
 
     public function testAddToBasket()
     {
-        $basket = new Basket();
+        $basket = $this->basket;
 
         $basket->addToBasket(AppleProduct::APPLE_PRODUCT_NAME, AppleProduct::KILOGRAM, AppleProduct::PRICE, 65);
 
