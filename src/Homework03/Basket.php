@@ -35,17 +35,15 @@ class Basket
      */
     public function addToBasket($name, $unit, $price, $quantity)
     {
-        $validation = $this->validInputParams($name, $unit, $price, $quantity);
+        $this->validInputParams($name, $unit, $price, $quantity);
 
-        if ($validation === true)
-        {
-            $this->basket[] = array(
-                self::NAME => $name,
-                self::UNIT => $unit,
-                self::PRICE => $price,
-                self::QUANTITY => $quantity,
-            );
-        }
+        $this->basket[] = array(
+            self::NAME => $name,
+            self::UNIT => $unit,
+            self::PRICE => $price,
+            self::QUANTITY => $quantity,
+        );
+
     }
 
     /**
@@ -53,37 +51,27 @@ class Basket
      * @param string $unit
      * @param float  $price
      * @param int    $quantity
-     *
-     * @return bool
      */
     private function validInputParams($name, $unit, $price, $quantity)
     {
-        $return = true;
-
         if (empty($name))
         {
-            //throw new \InvalidArgumentException('Empty name param!');
-            $return = false;
+            throw new \InvalidArgumentException('Empty name param!');
         }
 
         if (empty($unit))
         {
-            //throw new \InvalidArgumentException('Empty unit param!');
-            $return = false;
+            throw new \InvalidArgumentException('Empty unit param!');
         }
 
         if ($price < 0)
         {
-            //throw new \InvalidArgumentException('Invalid price param!');
-            $return = false;
+            throw new \InvalidArgumentException('Invalid price param!');
         }
 
         if ($quantity < 0)
         {
-            //throw new \InvalidArgumentException('Invalid quantity param!');
-            $return = false;
+            throw new \InvalidArgumentException('Invalid quantity param!');
         }
-
-        return $return;
     }
 }
