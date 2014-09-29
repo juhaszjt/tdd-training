@@ -66,5 +66,7 @@ class BasketTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(), $basket->getBasket());
     }
+
+
 }
  
