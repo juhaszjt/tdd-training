@@ -9,6 +9,9 @@
 namespace Tdd\Test\Homework03;
 
 use Tdd\Homework03\Cashier;
+use Tdd\Homework03\AppleProduct;
+use Tdd\Homework03\LightProduct;
+use Tdd\Homework03\StarShipProduct;
 
 class CashierTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,5 +25,18 @@ class CashierTest extends \PHPUnit_Framework_TestCase
     public function testCashierClassExists()
     {
         $cashier = $this->cashier;
+    }
+
+    public function testCashierProductsExists()
+    {
+        $cashier = $this->cashier;
+
+        $appleProduct = $cashier->getAppleProduct();
+        $lightProduct = $cashier->getLightProduct();
+        $starShipProduct = $cashier->getStarShipProduct();
+
+        $this->assertEquals(new AppleProduct(), $appleProduct);
+        $this->assertEquals(new LightProduct(), $lightProduct);
+        $this->assertEquals(new StarShipProduct(), $starShipProduct);
     }
 }
