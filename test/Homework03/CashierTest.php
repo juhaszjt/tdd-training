@@ -42,4 +42,11 @@ class CashierTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new StarShipProduct(), $starShipProduct);
         $this->assertEquals(new Basket(), $basket);
     }
+
+    public function testCashierBuyProductMethod()
+    {
+        $cashier = $this->cashier;
+
+        $cashier->buyProduct();
+    }
 }
