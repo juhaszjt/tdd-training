@@ -8,6 +8,7 @@
 
 namespace Tdd\Test\Homework03;
 
+use Tdd\Homework03\Basket;
 
 class BasketTest extends \PHPUnit_Framework_TestCase
 {
