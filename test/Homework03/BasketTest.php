@@ -29,5 +29,12 @@ class BasketTest extends \PHPUnit_Framework_TestCase
         $basket = new Basket();
         $this->assertEquals(array(), $basket->getBasket());
     }
+
+    public function testAddToBasket()
+    {
+        $basket = new Basket();
+
+        $basket->addToBasket();
+    }
 }
  
