@@ -103,4 +103,11 @@ class CashierTest extends \PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    public function testCashierCalculateExists()
+    {
+        $cashier = $this->cashier;
+
+        $cashier->calculate();
+    }
 }
