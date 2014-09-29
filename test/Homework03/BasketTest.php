@@ -11,6 +11,8 @@ namespace Tdd\Test\Homework03;
 use Tdd\Homework03\Basket;
 use Tdd\Homework03\AppleProduct;
 use Tdd\Homework03\Product;
+use Tdd\Practice03B\LightProduct;
+use Tdd\Practice03B\StarShipProduct;
 
 class BasketTest extends \PHPUnit_Framework_TestCase
 {
@@ -59,17 +61,33 @@ class BasketTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider cashierBuyProductMethodWithInvalidParamsDataProvider
      * @expectedException \InvalidArgumentException
      */
-    public function testAddToBasketWithInvalidParams()
+    public function testAddToBasketWithInvalidParams(array $params)
     {
         $basket = $this->basket;
 
-        $basket->addToBasket('', '', -66, 0);
+        $basket->addToBasket($params[0], $params[1], $params[2], $params[3]);
 
         $this->assertEquals(array(), $basket->getBasket());
     }
 
-
+    /**
+     * cashierBuyProductMethodWithInvalidParamsDataProvider
+     *
+     * @return array
+     */
+    public function cashierBuyProductMethodWithInvalidParamsDataProvider()
+    {
+        return array(
+            array(
+                array('', AppleProduct::KILOGRAM, 45, 137),
+                array(LightProduct::LIGHT_PRODUCT_NAME, 'crow', 21, 9),
+                array(StarShipProduct::STAR_SHIP_PRODUCT_NAME, StarShipProduct::PIECE, -33, 55),
+                array(LightProduct::LIGHT_PRODUCT_NAME, LightProduct::YEAR, 7, 0),
+            )
+        );
+    }
 }
  
