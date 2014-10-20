@@ -26,7 +26,7 @@ class CaptchaTest extends \PHPUnit_Framework_TestCase
 
     public function testCaptchaClassExists()
     {
-        $this->assertEquals($this->captcha, new Captcha());
+        $this->assertEquals(new Captcha(), $this->captcha);
     }
 
     public function testCaptchaStatus()
