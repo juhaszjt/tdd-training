@@ -33,6 +33,11 @@ class Counter
         $this->failedLoginIpCounter++;
     }
 
+	public function resetFailedLoginIpCounter()
+    {
+        $this->failedLoginIpCounter = 0;
+    }
+	
     /**
      * @return int
      */
@@ -46,6 +51,11 @@ class Counter
         $this->failedLoginIpRangeCounter++;
     }
 
+	public function resetFailedLoginIpRangeCounter()
+    {
+        $this->failedLoginIpRangeCounter = 0;
+    }
+	
     /**
      * @return int
      */
@@ -57,6 +67,11 @@ class Counter
     public function increaseFailedLoginIpCountryCounter()
     {
         $this->failedLoginIpCountryCounter++;
+    }
+	
+	public function resetFailedLoginIpCountryCounter()
+    {
+        $this->failedLoginIpCountryCounter = 0;
     }
 
     /**
@@ -70,5 +85,10 @@ class Counter
     public function increaseFailedLoginUsernameCounter()
     {
         $this->failedLoginUsernameCounter++;
+    }
+
+    public function resetFailedLoginUsernameCounter()
+    {
+        $this->failedLoginUsernameCounter = 0;
     }
 }

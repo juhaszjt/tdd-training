@@ -10,18 +10,66 @@ namespace FraudSystem\Homework04_2;
 
 class Login
 {
-    public function failedLogin(Counter $counter, Captcha $captcha, $errorCode)
+	public function successfulLogin(Captcha $captcha, Counter $counter)
     {
-        switch($errorCode)
+        $captcha->resetCaptcha();
+		
+		$counter->resetFailedLoginIpCounter();
+		$counter->resetFailedLoginIpRangeCounter();
+		$counter->resetFailedLoginIpCountryCounter();
+		$counter->resetFailedLoginUsernameCounter();
+		
+		return true;
+    }
+	
+	public function showCaptchaAfterUnSuccessfulLoginFromIp(Counter $counter)
+    {
+        $showCaptcha = false;
+
+        $counter->increaseFailedLoginIpCounter();
+
+        if ($counter->getFailedLoginIpCounter() <= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_ATTEMPTS)
         {
-            case 0:
-                $counter->increaseFailedLoginIpCounter();
-            case 1:
-                $counter->increaseFailedLoginIpRangeCounter();
-            case 2:
-                $counter->getFailedLoginIpCountryCounter();
-            case 3:
-                $counter->increaseFailedLoginUsernameCounter();
+            $counter->increaseFailedLoginIpRangeCounter();
+            $counter->increaseFailedLoginIpCountryCounter();
         }
+
+        if (
+            $counter->getFailedLoginIpCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_ATTEMPTS
+            || $counter->getFailedLoginIpRangeCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_RANGE_ATTEMPTS
+            || $counter->getFailedLoginIpCountryCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS
+        ) {
+            $showCaptcha = true;
+        }
+
+        return $showCaptcha;
+    }
+
+    public function showCaptchaAfterUnSuccessfulLoginFromRange(Counter $counter)
+    {
+        $showCaptcha = false;
+
+        $counter->increaseFailedLoginIpRangeCounter();
+
+        if ($counter->getFailedLoginIpRangeCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_RANGE_ATTEMPTS)
+        {
+            $showCaptcha = true;
+        }
+
+        return $showCaptcha;
+    }
+
+    public function showCaptchaAfterUnSuccessfulLoginFromCountry(Counter $counter)
+    {
+        $showCaptcha = false;
+
+        $counter->increaseFailedLoginIpCountryCounter();
+
+        if ($counter->getFailedLoginIpCountryCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS)
+        {
+            $showCaptcha = true;
+        }
+
+        return $showCaptcha;
     }
 }

@@ -24,4 +24,9 @@ class Captcha
     {
         $this->captchaIsActive = true;
     }
+	
+	public function resetCaptcha()
+    {
+        $this->captchaIsActive = false;
+    }
 }

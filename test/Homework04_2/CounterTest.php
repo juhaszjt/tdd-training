@@ -24,49 +24,48 @@ class CounterTest extends \PHPUnit_Framework_TestCase
     {
         unset($this->counter);
     }
-
-    public function testCounterClassExists()
-    {
-        $this->assertEquals(new Counter(), $this->counter);
-    }
-
+	
     public function testFailedLoginIpAttemptsConstantValue()
     {
         $this->assertEquals(3, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_ATTEMPTS);
     }
 
+	public function testFailedLoginIpCounterDefaultValue()
+    {
+        $this->assertEquals(0, $this->counter->getFailedLoginIpCounter());
+    }
+	
+	public function testFailedLoginIpCounterIncreaseValue()
+    {
+        $failedAttempts = 1;
+		
+		$this->counter->increaseFailedLoginIpCounter();
+        $this->assertEquals($failedAttempts, $this->counter->getFailedLoginIpCounter());
+		
+		return $failedAttempts;
+    }
+	
+	/**
+	 * @depends testFailedLoginIpCounterIncreaseValue
+	 */
+	public function testResetFailedLoginIpCounter($failedAttempts)
+	{
+		$this->counter->resetFailedLoginIpCounter();
+		
+		$this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpCounter());
+	}
+	
     public function testFailedLoginIpRangeAttemptsConstantValue()
     {
         $this->assertEquals(500, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_RANGE_ATTEMPTS);
     }
 
-    public function testFailedLoginIpCountryAttemptsConstantValue()
-    {
-        $this->assertEquals(1000, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS);
-    }
-
-    public function testFailedLoginUsernameAttemptsConstantValue()
-    {
-        $this->assertEquals(3, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_USERNAME_ATTEMPTS);
-    }
-
-    public function testFailedLoginIpCounterDefaultValue()
-    {
-        $this->assertEquals(0, $this->counter->getFailedLoginIpCounter());
-    }
-
-    public function testFailedLoginIpCounterIncreaseValue()
-    {
-        $this->counter->increaseFailedLoginIpCounter();
-        $this->assertEquals(1, $this->counter->getFailedLoginIpCounter());
-    }
-
-    public function testFailedLoginIpRangeCounterDefaultValue()
+	public function testFailedLoginIpRangeCounterDefaultValue()
     {
         $this->assertEquals(0, $this->counter->getFailedLoginIpRangeCounter());
     }
-
-    public function testFailedLoginIpRangeCounterIncreaseValue()
+    
+	public function testFailedLoginIpRangeCounterIncreaseValue()
     {
         $failedAttempts = 5;
 
@@ -76,6 +75,23 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals($failedAttempts, $this->counter->getFailedLoginIpRangeCounter());
+		
+		return $failedAttempts;
+    }
+	
+	/**
+	 * @depends testFailedLoginIpRangeCounterIncreaseValue
+	 */
+	public function testResetFailedLoginIpRangeCounter($failedAttempts)
+	{
+		$this->counter->resetFailedLoginIpRangeCounter();
+		
+		$this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpRangeCounter());
+	}
+	
+	public function testFailedLoginIpCountryAttemptsConstantValue()
+    {
+        $this->assertEquals(1000, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS);
     }
 
     public function testFailedLoginIpCountryCounterDefaultValue()
@@ -93,9 +109,26 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals($failedAttempts, $this->counter->getFailedLoginIpCountryCounter());
+		
+		return $failedAttempts;
     }
 
-    public function testFailedLoginUsernameCounterDefaultValue()
+    /**
+	 * @depends testFailedLoginIpCountryCounterIncreaseValue
+	 */
+	public function testResetFailedLoginIpCountryCounter($failedAttempts)
+	{
+		$this->counter->resetFailedLoginIpCountryCounter();
+		
+		$this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpCountryCounter());
+	}
+	
+	public function testFailedLoginUsernameAttemptsConstantValue()
+    {
+        $this->assertEquals(3, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_USERNAME_ATTEMPTS);
+    }
+	
+	public function testFailedLoginUsernameCounterDefaultValue()
     {
         $this->assertEquals(0, $this->counter->getFailedLoginUsernameCounter());
     }
@@ -110,6 +143,18 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals($failedAttempts, $this->counter->getFailedLoginUsernameCounter());
+		
+		return $failedAttempts;
     }
+	
+	/**
+	 * @depends testFailedLoginUsernameCounterIncreaseValue
+	 */
+	public function testResetFailedLoginUsernameCounter($failedAttempts)
+	{
+		$this->counter->resetFailedLoginUsernameCounter();
+		
+		$this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginUsernameCounter());
+	}
 }
  
