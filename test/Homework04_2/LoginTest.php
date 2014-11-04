@@ -23,53 +23,53 @@ class LoginTest extends \PHPUnit_Framework_TestCase
     {
         unset($this->login);
     }
-	
+    
     public function getCaptchaMockObject()
     {
         return $this->getMock(
-			'FraudSystem\\Homework04_2\\Captcha', 
-			array(
-				'resetCaptcha',
-				'isCaptchaIsActive',
-				'setCaptchaToActive',
-			)
-		);
+            'FraudSystem\\Homework04_2\\Captcha', 
+            array(
+                'resetCaptcha',
+                'isCaptchaIsActive',
+                'setCaptchaToActive',
+            )
+        );
     }
 
     public function getCounterMockObject()
     {
         return $this->getMock(
-			'FraudSystem\\Homework04_2\\Counter', 
-			array(
-				'resetFailedLoginIpCounter', 
-				'resetFailedLoginIpRangeCounter', 
-				'resetFailedLoginIpCountryCounter', 
-				'resetFailedLoginUsernameCounter',
-				'getFailedLoginIpCounter',				
-				'getFailedLoginIpRangeCounter',				
-				'getFailedLoginIpCountryCounter',				
-			)
-		);
+            'FraudSystem\\Homework04_2\\Counter', 
+            array(
+                'resetFailedLoginIpCounter', 
+                'resetFailedLoginIpRangeCounter', 
+                'resetFailedLoginIpCountryCounter', 
+                'resetFailedLoginUsernameCounter',
+                'getFailedLoginIpCounter',                
+                'getFailedLoginIpRangeCounter',                
+                'getFailedLoginIpCountryCounter',                
+            )
+        );
     }
 
     public function testSuccessfulLoginProcess()
-    {		
-		$captcha = $this->getCaptchaMockObject();
-		$counter = $this->getCounterMockObject();
-		
-		$this->assertTrue($this->login->successfulLogin($captcha, $counter));
+    {        
+        $captcha = $this->getCaptchaMockObject();
+        $counter = $this->getCounterMockObject();
+        
+        $this->assertTrue($this->login->successfulLogin($captcha, $counter));
     }
-	
-	public function testShowCaptchaAfterFirstUnSuccessfulLoginFromIp()
+    
+    public function testShowCaptchaAfterFirstUnSuccessfulLoginFromIp()
     {
-		$counterStub = $this->getCounterMockObject();
-		
-		$counterStub->expects($this->any())->method('getFailedLoginIpCounter')->will($this->returnValue(1));
+        $counterStub = $this->getCounterMockObject();
+        
+        $counterStub->expects($this->any())->method('getFailedLoginIpCounter')->will($this->returnValue(1));
         $counterStub->expects($this->any())->method('getFailedLoginIpRangeCounter')->will($this->returnValue(1));
         $counterStub->expects($this->any())->method('getFailedLoginIpCountryCounter')->will($this->returnValue(1));
-		
-		$this->assertFalse($this->login->showCaptchaAfterUnSuccessfulLoginFromIp($counterStub));
-	}
+        
+        $this->assertFalse($this->login->showCaptchaAfterUnSuccessfulLoginFromIp($counterStub));
+    }
 
     public function testShowCaptchaAfterThirdUnSuccessfulLoginFromIp()
     {

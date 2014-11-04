@@ -10,19 +10,19 @@ namespace FraudSystem\Homework04_2;
 
 class Login
 {
-	public function successfulLogin(Captcha $captcha, Counter $counter)
+    public function successfulLogin(Captcha $captcha, Counter $counter)
     {
         $captcha->resetCaptcha();
-		
-		$counter->resetFailedLoginIpCounter();
-		$counter->resetFailedLoginIpRangeCounter();
-		$counter->resetFailedLoginIpCountryCounter();
-		$counter->resetFailedLoginUsernameCounter();
-		
-		return true;
+        
+        $counter->resetFailedLoginIpCounter();
+        $counter->resetFailedLoginIpRangeCounter();
+        $counter->resetFailedLoginIpCountryCounter();
+        $counter->resetFailedLoginUsernameCounter();
+        
+        return true;
     }
-	
-	public function showCaptchaAfterUnSuccessfulLoginFromIp(Counter $counter)
+    
+    public function showCaptchaAfterUnSuccessfulLoginFromIp(Counter $counter)
     {
         $showCaptcha = false;
 
