@@ -10,23 +10,25 @@ namespace FraudSystem\Homework04_2;
 
 class Captcha
 {
-    private $captchaIsActive = false;
+    private $captchaStatus = false;
 
     /**
      * @return boolean
      */
-    public function isCaptchaIsActive()
+    public function getCaptchaStatus()
     {
-        return $this->captchaIsActive;
+        return $this->captchaStatus;
     }
 
-    public function setCaptchaToActive()
+    public function setCaptchaStatus($status)
     {
-        $this->captchaIsActive = true;
-    }
-	
-    public function resetCaptcha()
-    {
-        $this->captchaIsActive = false;
+        if (is_bool($status))
+        {
+            $this->captchaStatus = $status;
+        }
+        else
+        {
+            throw new \InvalidArgumentException('Invalid captcha status: ' . $status);
+        }
     }
 }

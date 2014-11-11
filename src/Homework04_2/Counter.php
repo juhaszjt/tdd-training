@@ -8,6 +8,8 @@
 
 namespace FraudSystem\Homework04_2;
 
+// @todo: abstract!
+
 class Counter
 {
     const CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_ATTEMPTS         = 3;
@@ -20,6 +22,7 @@ class Counter
     private $failedLoginIpCountryCounter = 0;
     private $failedLoginUsernameCounter  = 0;
 
+    ////////Login Ip//////////
     /**
      * @return int
      */
@@ -38,6 +41,7 @@ class Counter
         $this->failedLoginIpCounter = 0;
     }
     
+    ////////Login Ip Range//////////
     /**
      * @return int
      */
@@ -56,6 +60,7 @@ class Counter
         $this->failedLoginIpRangeCounter = 0;
     }
     
+    ////////Login Ip Country//////////
     /**
      * @return int
      */
@@ -74,6 +79,7 @@ class Counter
         $this->failedLoginIpCountryCounter = 0;
     }
 
+    ////////Login Username//////////
     /**
      * @return int
      */

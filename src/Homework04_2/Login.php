@@ -12,16 +12,16 @@ class Login
 {
     public function successfulLogin(Captcha $captcha, Counter $counter)
     {
-        $captcha->resetCaptcha();
+        $captcha->setCaptchaStatus(false);
         
         $counter->resetFailedLoginIpCounter();
         $counter->resetFailedLoginIpRangeCounter();
         $counter->resetFailedLoginIpCountryCounter();
         $counter->resetFailedLoginUsernameCounter();
-        
-        return true;
     }
     
+    // If we have a failed login from an ip we must increase the ip, 
+    // the range and the country counter till the captcha is not active. 
     public function showCaptchaAfterUnSuccessfulLoginFromIp(Counter $counter)
     {
         $showCaptcha = false;

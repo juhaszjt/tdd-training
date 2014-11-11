@@ -8,7 +8,6 @@
 
 namespace FraudSystem\Test\Homework04_2;
 
-//use FraudSystem\Homework04_2\Captcha;
 use FraudSystem\Homework04_2\Counter;
 
 class CounterTest extends \PHPUnit_Framework_TestCase
@@ -24,6 +23,8 @@ class CounterTest extends \PHPUnit_Framework_TestCase
     {
         unset($this->counter);
     }
+    
+    ////////Login Ip//////////
     
     public function testFailedLoginIpAttemptsConstantValue()
     {
@@ -54,6 +55,8 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         
         $this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpCounter());
     }
+    
+    ////////Login Range//////////
     
     public function testFailedLoginIpRangeAttemptsConstantValue()
     {
@@ -89,6 +92,8 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpRangeCounter());
     }
     
+    ////////Login Ip Country//////////
+    
     public function testFailedLoginIpCountryAttemptsConstantValue()
     {
         $this->assertEquals(1000, Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS);
@@ -122,6 +127,8 @@ class CounterTest extends \PHPUnit_Framework_TestCase
         
         $this->assertNotEquals($failedAttempts, $this->counter->getFailedLoginIpCountryCounter());
     }
+    
+    ////////Login Username//////////
     
     public function testFailedLoginUsernameAttemptsConstantValue()
     {
