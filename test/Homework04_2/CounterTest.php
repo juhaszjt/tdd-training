@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jani
- * Date: 19/10/2014
- * Time: 23:01
- */
 
 namespace FraudSystem\Test\Homework04_2;
 

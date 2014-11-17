@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jani
- * Date: 20/10/2014
- * Time: 22:03
- */
 
 namespace FraudSystem\Test\Homework04_2;
 
@@ -40,6 +34,14 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->getMock();
     }
 
+    public function getUserMockObject()
+    {
+        return $this
+            ->getMockBuilder('FraudSystem\\Homework04_2\\User')
+            ->setMethods(array())
+            ->getMock();
+    }
+    
     public function testSuccessfulLoginProcess()
     {        
         $captcha = $this->getCaptchaMockObject();
@@ -68,108 +70,193 @@ class LoginTest extends \PHPUnit_Framework_TestCase
         $this->login->successfulLogin($captcha, $counter);
     }
     
-    public function testShowCaptchaAfterFirstUnSuccessfulLoginFromIp()
+    public function testCheckCaptchaAfterFirstUnSuccessfulLoginFromIp()
     {
         $failedAttempt = 1;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->exactly(2))
             ->method('getFailedLoginIpCounter')
             ->will($this->returnValue($failedAttempt));
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpRangeCounter')
             ->will($this->returnValue($failedAttempt));
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpCountryCounter')
             ->will($this->returnValue($failedAttempt));
         
-        $this->assertFalse($this->login->showCaptchaAfterUnSuccessfulLoginFromIp($counter));
+        $this->assertFalse($this->login->CheckCaptchaAfterUnSuccessfulLoginFromIp($counter));
+        
+        return $failedAttempt;
     }
 
-    public function testShowCaptchaAfterThirdUnSuccessfulLoginFromIp()
+    public function testCheckCaptchaAfterThirdUnSuccessfulLoginFromIp()
     {
         $failedAttempt = 3;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->exactly(2))
             ->method('getFailedLoginIpCounter')
             ->will($this->returnValue($failedAttempt));
 
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulLoginFromIp($counter));
+    }
+    
+    /**
+     * @depends testCheckCaptchaAfterFirstUnSuccessfulLoginFromIp
+     */
+    public function testCheckCaptchaAfterFirstUnSuccessfulLoginFromIpButFiveHundredthUnSuccessfulLoginFromRange($failedAttemptIp)
+    {
+        $failedAttemptIpRange = 500;
+
+        $counter = $this->getCounterMockObject();
+
         $counter
-            ->expects($this->any())
+            ->expects($this->exactly(2))
+            ->method('getFailedLoginIpCounter')
+            ->will($this->returnValue($failedAttemptIp));
+
+        $counter
+            ->expects($this->once())
             ->method('getFailedLoginIpRangeCounter')
-            ->will($this->returnValue($failedAttempt));
-
-        $counter
-            ->expects($this->any())
-            ->method('getFailedLoginIpCountryCounter')
-            ->will($this->returnValue($failedAttempt));
-
-        $this->assertTrue($this->login->showCaptchaAfterUnSuccessfulLoginFromIp($counter));
+            ->will($this->returnValue($failedAttemptIpRange));
+        
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulLoginFromIp($counter));
     }
 
-    public function testShowCaptchaAfterFirstUnSuccessfulLoginFromRange()
+    /**
+     * @depends testCheckCaptchaAfterFirstUnSuccessfulLoginFromIp
+     */
+    public function testCheckCaptchaAfterFirstUnSuccessfulLoginFromIpAndRangeButOneThousandthUnSuccessfulLoginFromCountry($failedAttemptIp)
+    {
+        $failedAttemptIpRange   = 1;
+        $failedAttemptIpCountry = 1000;
+
+        $counter = $this->getCounterMockObject();
+
+        $counter
+            ->expects($this->exactly(2))
+            ->method('getFailedLoginIpCounter')
+            ->will($this->returnValue($failedAttemptIp));
+
+        $counter
+            ->expects($this->once())
+            ->method('getFailedLoginIpRangeCounter')
+            ->will($this->returnValue($failedAttemptIpRange));
+            
+        $counter
+            ->expects($this->once())
+            ->method('getFailedLoginIpCountryCounter')
+            ->will($this->returnValue($failedAttemptIpCountry));
+        
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulLoginFromIp($counter));
+    }
+    
+    public function testCheckCaptchaAfterFirstUnSuccessfulLoginFromRange()
     {
         $failedAttempt = 1;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpRangeCounter')
             ->will($this->returnValue($failedAttempt));
 
-        $this->assertFalse($this->login->showCaptchaAfterUnSuccessfulLoginFromRange($counter));
+        $this->assertFalse($this->login->CheckCaptchaAfterUnSuccessfulLoginFromRange($counter));
     }
 
-    public function testShowCaptchaAfterFiveHundredthUnSuccessfulLoginFromRange()
+    public function testCheckCaptchaAfterFiveHundredthUnSuccessfulLoginFromRange()
     {
         $failedAttempt = 500;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpRangeCounter')
             ->will($this->returnValue($failedAttempt));
 
-        $this->assertTrue($this->login->showCaptchaAfterUnSuccessfulLoginFromRange($counter));
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulLoginFromRange($counter));
     }
 
-    public function testShowCaptchaAfterFirstUnSuccessfulLoginFromCountry()
+    public function testCheckCaptchaAfterFirstUnSuccessfulLoginFromCountry()
     {
         $failedAttempt = 1;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpCountryCounter')
             ->will($this->returnValue($failedAttempt));
 
-        $this->assertFalse($this->login->showCaptchaAfterUnSuccessfulLoginFromCountry($counter));
+        $this->assertFalse($this->login->CheckCaptchaAfterUnSuccessfulLoginFromCountry($counter));
     }
 
-    public function testShowCaptchaAfterOneThousandthUnSuccessfulLoginFromCountry()
+    public function testCheckCaptchaAfterOneThousandthUnSuccessfulLoginFromCountry()
     {
         $failedAttempt = 1000;
 
         $counter = $this->getCounterMockObject();
 
         $counter
-            ->expects($this->any())
+            ->expects($this->once())
             ->method('getFailedLoginIpCountryCounter')
             ->will($this->returnValue($failedAttempt));
 
-        $this->assertTrue($this->login->showCaptchaAfterUnSuccessfulLoginFromCountry($counter));
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulLoginFromCountry($counter));
+    }
+    
+    public function testCheckCaptchaAfterFirstUnSuccessfulUsernameLogin()
+    {
+        $failedAttempt = 1;
+
+        $counter = $this->getCounterMockObject();
+
+        $counter
+            ->expects($this->once())
+            ->method('getFailedLoginUsernameCounter')
+            ->will($this->returnValue($failedAttempt));
+
+        $this->assertFalse($this->login->CheckCaptchaAfterUnSuccessfulUsernameLogin($counter));
+    }
+
+    public function testCheckCaptchaAfterThirdUnSuccessfulUsernameLogin()
+    {
+        $failedAttempt = 3;
+
+        $counter = $this->getCounterMockObject();
+
+        $counter
+            ->expects($this->once())
+            ->method('getFailedLoginUsernameCounter')
+            ->will($this->returnValue($failedAttempt));
+
+        $this->assertTrue($this->login->CheckCaptchaAfterUnSuccessfulUsernameLogin($counter));
+    }
+    
+    public function testCheckCaptchaAfterUnSuccessfulLoginWithDifferentCountries()
+    {
+        $registrationCountry = 'UK';
+        $loginCountry = 'LU';
+        
+        $user = $this->getUserMockObject();
+        
+        $user
+            ->expects($this->once())
+            ->method('getRegistrationCountry')
+            ->will($this->returnValue($registrationCountry));
+            
+        $this->assertTrue($this->login->checkRegistrationAndActualCountryAfterFailedLogin($user, $loginCountry));
     }
 }
  

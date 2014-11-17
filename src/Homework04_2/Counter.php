@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jani
- * Date: 19/10/2014
- * Time: 23:03
- */
 
 namespace FraudSystem\Homework04_2;
-
-// @todo: abstract!
 
 class Counter
 {
