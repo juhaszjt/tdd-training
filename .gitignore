@@ -303,3 +303,9 @@ phpUnitTutorial/User.php
 test/test/Homework04_2/src/Homework04_2/Login.php.html
 test/test/Homework04_2/test/Homework04_2/UserTest.php.html
 test/test/Homework04_2/User.php.html
+test/test/Homework04_2/test/Homework04_2/LoginAuthTest.php.html
+test/test/Homework04_2/src/Homework04_2/User.php.html
+test/test/Homework04_2/LoginAuth.php.html
+test/test/Homework04_2/LoginAttempt.php.html
+test/test/Homework04_2/Authenticate.php.html
+test/test/Homework04_2/ErrorLog.php.html

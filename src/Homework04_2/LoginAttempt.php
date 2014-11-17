@@ -4,8 +4,14 @@ namespace FraudSystem\Homework04_2;
 
 class LoginAttempt
 {
-    // password, country, time, ip ...
+    // country
     public function getLoginCountry()
+    {
+    
+    }
+    
+    // errorCode
+    public function getErrorCode()
     {
     
     }

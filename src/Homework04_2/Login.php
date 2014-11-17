@@ -15,10 +15,8 @@ class Login
         $counter->resetFailedLoginUsernameCounter();
     }
     
-    public function checkCaptchaAfterUnSuccessfulLoginFromIp(Counter $counter)
+    public function checkCaptchaAfterUnSuccessfulLoginFromIp(Captcha $captcha, Counter $counter)
     {
-        $showCaptcha = false;
-
         $counter->increaseFailedLoginIpCounter();
 
         // If we have a failed login from an ip we must increase the ip, 
@@ -37,70 +35,62 @@ class Login
             || $counter->getFailedLoginIpRangeCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_RANGE_ATTEMPTS
             || $counter->getFailedLoginIpCountryCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_COUNTRY_ATTEMPTS
         ) {
-            $showCaptcha = true;
+            $captcha->setCaptchaStatus(true);
         }
 
-        return $showCaptcha;
+        return $captcha->getCaptchaStatus();
     }
 
     // - from the same ip range we have 500 failed login
-    public function checkCaptchaAfterUnSuccessfulLoginFromRange(Counter $counter)
+    public function checkCaptchaAfterUnSuccessfulLoginFromRange(Captcha $captcha, Counter $counter)
     {
-        $showCaptcha = false;
-
         $counter->increaseFailedLoginIpRangeCounter();
 
         if ($counter->getFailedLoginIpRangeCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_IP_RANGE_ATTEMPTS)
         {
-            $showCaptcha = true;
+            $captcha->setCaptchaStatus(true);
         }
 
-        return $showCaptcha;
+        return $captcha->getCaptchaStatus();
     }
 
     // - from the same country we have 1000 failed login
-    public function checkCaptchaAfterUnSuccessfulLoginFromCountry(Counter $counter)
+    public function checkCaptchaAfterUnSuccessfulLoginFromCountry(Captcha $captcha, Counter $counter)
     {
-        $showCaptcha = false;
-
         $counter->increaseFailedLoginIpCountryCounter();
 
         if ($counter->getFailedLoginIpCountryCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_USERNAME_ATTEMPTS)
         {
-            $showCaptcha = true;
+            $captcha->setCaptchaStatus(true);
         }
 
-        return $showCaptcha;
+        return $captcha->getCaptchaStatus();
     }
     
     // - with the same username we have 3 failed login
-    public function checkCaptchaAfterUnSuccessfulUsernameLogin(Counter $counter)
+    public function checkCaptchaAfterUnSuccessfulUsernameLogin(Captcha $captcha, Counter $counter)
     {
-        $showCaptcha = false;
-
         $counter->increaseFailedLoginUsernameCounter();
 
         if ($counter->getFailedLoginUsernameCounter() >= Counter::CAPTCHA_STATUS_SWITCH_FAILED_LOGIN_USERNAME_ATTEMPTS)
         {
-            $showCaptcha = true;
+            $captcha->setCaptchaStatus(true);
         }
 
-        return $showCaptcha;
+        return $captcha->getCaptchaStatus();
     }
     
     // if the username registration country is different from the client country (from geoip) and the login has failed, 
     // then you need to activate the captcha to the next try.
-    public function checkRegistrationAndActualCountryAfterFailedLogin(User $user, $loginCountry)
+    public function checkRegistrationAndActualCountryAfterFailedLogin(Captcha $captcha, User $user, $loginCountry)
     {
-        $showCaptcha = false;
-        
         $registrationCountry = $user->getRegistrationCountry();
         
         if ($registrationCountry != $loginCountry)
         {
-            $showCaptcha = true;
+            $captcha->setCaptchaStatus(true);
         }
         
-        return $showCaptcha;
+        return $captcha->getCaptchaStatus();
     }
 }

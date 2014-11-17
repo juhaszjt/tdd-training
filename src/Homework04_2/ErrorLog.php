@@ -7,7 +7,7 @@ class ErrorLog
     public function __construct(
         User $user, 
         // password, country, time, ip...
-        LoginAttempt $loginAttempt,
+        LoginAttempt $loginAttempt
     ) {
         // Log the errors
     }
