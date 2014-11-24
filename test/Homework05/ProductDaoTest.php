@@ -19,10 +19,10 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $dsn = sprintf("sqlite:%s", DEV_DATABASE_FILE);
+        $dsn = sprintf("sqlite:%s", realpath(DEV_DATABASE_FILE));
         $this->pdo = new \PDO($dsn);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        
+
         $this->addTestRecord();
         
         $this->productDao = new ProductDao($this->pdo);
@@ -38,6 +38,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         unset($this->pdo);
     }
     
+    /**
+     * add test method, use: setUp()
+     */
     private function addTestRecord()
     {
         $sth = $this->pdo->prepare("
@@ -55,6 +58,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         );
     }
     
+    /**
+     * delete test method, use: tearDown()
+     */    
     private function deleteTestRecord($ean, $name)
     {
         $sth = $this->pdo->prepare("DELETE FROM product WHERE ean = :ean AND name = :name");
@@ -67,6 +73,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         );
     }
     
+    /**
+     * generate product Mock method, use: setUp()
+     */ 
     public function getProductMockObject()
     {
         return $this
@@ -77,6 +86,11 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     
     //// Test getByEan ////
     
+    /**
+     * test GetByEan ean parameter
+     *
+     * @return Product
+     */    
     public function testGetByEanValueEan()
     {        
         $product = $this->productDao->getByEan(self::TEST_EAN_VALUE);
@@ -87,6 +101,8 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * test GetByEan name parameter
+     *
      * @depends testGetByEanValueEan
      */
     public function testGetByEanValueName($product)
@@ -94,6 +110,11 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::TEST_EAN_NAME_VALUE, $product->name);
     }
 
+    /**
+     * test GetByEan ean parameter with Null Product
+     *
+     * @return Product
+     */ 
     public function testGetByEanValueEanReturnNullProduct()
     {        
         $product = $this->productDao->getByEan('schmetterling');
@@ -104,6 +125,8 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * test GetByEan name parameter with Null Product
+     *
      * @depends testGetByEanValueEanReturnNullProduct
      */
     public function testGetByEanValueNameReturnNullProduct($product)
@@ -112,7 +135,11 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     }
     
     //// Test getById ////
-    
+    /**
+     * test GetById ean parameter
+     *
+     * @return Product
+     */  
     public function testGetByIdValueEan()
     {        
         $product = $this->productDao->getById(1);
@@ -123,6 +150,8 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * test GetById name parameter
+     *
      * @depends testGetByIdValueEan
      */
     public function testGetByIdValueName($product)
@@ -130,6 +159,11 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::TEST_EAN_NAME_VALUE, $product->name);
     }
     
+    /**
+     * test GetById ean parameter with Null Product
+     *
+     * @return Product
+     */ 
     public function testGetByIdValueEanReturnNullProduct()
     {        
         $product = $this->productDao->getById(0);
@@ -140,6 +174,8 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * test GetById name parameter with Null Product
+     *
      * @depends testGetByIdValueEanReturnNullProduct
      */
     public function testGetByIdValueNameReturnNullProduct($product)
@@ -149,6 +185,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
 
     //// Test create ////
     
+    /**
+     * test create with Existing record
+     */
     public function testCreateWithExistingRecord()
     {        
         $this->productMock->ean  = self::TEST_EAN_VALUE;
@@ -157,6 +196,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $this->productDao->create($this->productMock));
     }
     
+    /**
+     * test create with non Existent record
+     */
     public function testCreateWithNonExistentRecord()
     {
         $this->productMock->ean  = '909090';
@@ -169,6 +211,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     
     //// Test modify ////
     
+    /**
+     * test modify with Existing record
+     */
     public function testModifyWithExistingRecord()
     {        
         $this->productMock->id   = 1;
@@ -184,6 +229,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
         $this->deleteTestRecord($this->productMock->ean, $this->productMock->name);
     }
 
+    /**
+     * test create with non Existent record
+     */
     public function testModifyWithNonExistentRecord()
     {
         $this->productMock->id   = 2;
@@ -199,6 +247,9 @@ class ProductDaoTest extends \PHPUnit_Framework_TestCase
     
     //// Test delete ////
     
+    /**
+     * test delete with Existing record
+     */
     public function testDeleteWithExistingRecord()
     {        
         $this->productMock->id = 1;

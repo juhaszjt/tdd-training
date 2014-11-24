@@ -35,19 +35,9 @@ class ProductDao {
 
         $rows = $sth->fetchAll();
         
-        if (count($rows) > 0)
-        {
-            $row = $rows[0];
-
-            $product = new Product;
-            $product->id = $row['id'];
-            $product->name = $row['name'];
-            $product->ean = $row['ean'];
-
-            return $product;
-        }
-
-        return new NullProduct;
+        $returnValue = $this->generateSelectedReturnValue($rows);
+        
+        return $returnValue;
     }
 
     /**
@@ -68,19 +58,9 @@ class ProductDao {
 
         $rows = $sth->fetchAll();
         
-        if (count($rows) > 0)
-        {
-            $row = $rows[0];
-
-            $product = new Product;
-            $product->id = $row['id'];
-            $product->name = $row['name'];
-            $product->ean = $row['ean'];
-
-            return $product;
-        }
-
-        return new NullProduct;
+        $returnValue = $this->generateSelectedReturnValue($rows);
+        
+        return $returnValue;
     }
 
     /**
@@ -102,7 +82,7 @@ class ProductDao {
 
             $sth->execute(
                 array(
-                    ':ean' => $product->ean,
+                    ':ean'  => $product->ean,
                     ':name' => $product->name,
                 )
             );
@@ -129,15 +109,15 @@ class ProductDao {
             $sth = $this->pdo->prepare("
                 UPDATE product
                 SET
-                    ean = :ean,
+                    ean  = :ean,
                     name = :name
                 WHERE id = :id
             ");
 
             $sth->execute(
                 array(
-                    ':id' => $product->id,
-                    ':ean' => $product->ean,
+                    ':id'   => $product->id,
+                    ':ean'  => $product->ean,
                     ':name' => $product->name,
                 )
             );
@@ -189,5 +169,22 @@ class ProductDao {
         }
         
         return true;
+    }
+    
+    protected function generateSelectedReturnValue($rows)
+    {
+        if (count($rows) > 0)
+        {
+            $row = $rows[0];
+
+            $product = new Product;
+            $product->id   = $row['id'];
+            $product->name = $row['name'];
+            $product->ean  = $row['ean'];
+
+            return $product;
+        }
+
+        return new NullProduct;
     }
 }
