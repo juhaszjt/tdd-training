@@ -18,38 +18,35 @@ class StringCalculatorTest extends \PHPUnit_Framework_TestCase
         unset($this->stringCalculator);
     }
     
-    public function testAddMethodExists()
-    {
-        $testStringCalculator = new StringCalculator();
-        
-        $this->assertEquals($this->stringCalculator->add(0), $testStringCalculator->add(0));
-    }
-    
     public function testAddMethodWithEmptyString()
     {
-        $testStringCalculator = new StringCalculator();
-
-        $this->assertEquals(0, $testStringCalculator->add(0));
+        $this->assertEquals(0, $this->stringCalculator->add(''));
     }
 
     /**
      * @dataProvider addMethodWithValidStringsDataProvider
+     *
+     * @param array $params
      */
     public function testAddMethodWithValidStrings(array $params)
     {
-        $testStringCalculator = new StringCalculator();
-
-        $this->assertEquals($params[0], $testStringCalculator->add($params[1]));
+        list($expected, $actualParam) = $params;
+        $this->assertEquals($expected, $this->stringCalculator->add($actualParam));
     }
     
     public function addMethodWithValidStringsDataProvider()
     {
         return array(
             array(
+                array(4, '1,3'),
                 array(1, '1'),
-                array(3, '1,2'),
                 array(5, '1,4'),
-                array(12, '1,4,7'),
+                array(5, '1,kakao,4'),
+                array(15, '1,10,4'),
+                array(49, '1,44,4'),
+                array(0, 'kes'),
+                array(6, '1\n2,3'),
+                array(1, '1,1001'),
             )
         );
     }
@@ -58,19 +55,37 @@ class StringCalculatorTest extends \PHPUnit_Framework_TestCase
      * @dataProvider addMethodWithInValidStringsDataProvider
      * @expectedException \InvalidArgumentException
      */
-    public function testAddMethodWithInValidStrings(array $params)
+    public function testAddMethodWithInValidStrings($numbers)
     {
-        $testStringCalculator = new StringCalculator();
-
-        $this->assertEquals($params[0], $testStringCalculator->add($params[0]));
+        $this->stringCalculator->add($numbers);
     }
     
     public function addMethodWithInValidStringsDataProvider()
     {
         return array(
+            array('-1'),
+            array('-1,5,-9'),
+            array('-1,sas,8'),
+        );
+    }
+    
+    /**
+     * @dataProvider addMethodWithDifferentDelimiterDataProvider
+     *
+     * @param array $params
+     */
+    public function testAddMethodWithDifferentDelimiter(array $params)
+    {
+        list($expected, $actualParam) = $params;
+        $this->assertEquals($expected, $this->stringCalculator->add($actualParam));
+    }
+    
+    public function addMethodWithDifferentDelimiterDataProvider()
+    {
+        return array(
             array(
-                array('kakao'),
-                array('1,null'),
+                array(3, '//;\n1;2'),
+                array(7, '//:::\n5:::2'),
             )
         );
     }

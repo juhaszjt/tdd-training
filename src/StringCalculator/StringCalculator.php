@@ -10,36 +10,63 @@ class StringCalculator
 
         if (is_string($numbers))
         {
-            $explodedNumbers = explode(',', $numbers);
+            if ($numbers != '')
+            {               
+                $delimiter = ',';
+                
+                $pos = strpos($numbers, '//');
 
-            if (count($explodedNumbers) > 1)
-            {
-                foreach ($explodedNumbers as $number)
+                if ($pos !== false) 
                 {
-                    //print $number;
-                    if (is_int($number))
+                    $posDelimiterStart = strpos($numbers, '\n');
+                    
+                    if ($posDelimiterStart !== false)
                     {
-                        $sumNumbers += $number;
+                        $delimiter = substr($numbers, 2, $posDelimiterStart - 2);
+                        $numbers = substr($numbers, $posDelimiterStart + 2);
                     }
                     else
                     {
-                        throw new \InvalidArgumentException;
+                        throw new \InvalidArgumentException('Invalid delimiter syntactic!');       
                     }
                 }
-            }
-            else
-            {
-                if (is_int($explodedNumbers[0]))
-                {
-                    $sumNumbers = $explodedNumbers[0];
+                
+                if ($delimiter != ',')
+                {                    
+                    $explodedNumbers = explode($delimiter, $numbers);
                 }
                 else
-                {
-                    throw new \InvalidArgumentException;
+                {     
+                    $numbers = str_replace('\n', ',', $numbers);            
+                    $explodedNumbers = explode(',', $numbers);
                 }
+
+                $negativeNumbers = '';
+                $validNumbers = array();
+                
+                foreach($explodedNumbers as $number)
+                {                    
+                    if ($number < 0)
+                    {    
+                        $negativeNumbers .= $number . ',';                            
+                    }
+                    else
+                    {
+                        if ($number <= 1000)
+                        {    
+                            $validNumbers[] = $number;                            
+                        }
+                    }
+                }
+
+                if ($negativeNumbers != '')
+                {               
+                    throw new \InvalidArgumentException('negatives not allowed' . $negativeNumbers);                
+                }
+                
+                $sumNumbers = array_sum($validNumbers);
             }
         }
-
         return $sumNumbers;
     }
 }
