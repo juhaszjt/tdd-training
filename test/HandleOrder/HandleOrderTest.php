@@ -7,6 +7,7 @@ use HandleOrder\HandleOrder\HandleOrder;
 use HandleOrder\HandleOrder\HandleOrderDaoFake;
 use HandleOrder\HandleOrder\HandleOrderDoFake;
 
+// some comment
 class HandleOrderTest extends \PHPUnit_Framework_TestCase
 {
     private $handleOrder;
