@@ -11,7 +11,7 @@ namespace Tdd\Homework02;
 class SequenceAnalyser
 {
     private $sequence = null;
-
+    // max
     private $max = null;
 
     private $min = null;

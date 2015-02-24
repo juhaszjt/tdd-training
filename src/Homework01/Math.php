@@ -8,6 +8,7 @@
 
 namespace Tdd\Homework01;
 
+// Math
 class Math
 {
     /**
